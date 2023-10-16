@@ -1,4 +1,5 @@
 resources:
   - ../../base/app-of-apps
 patches:
-  - applications-patch.yaml
+  - path: applications-patch.yaml
+    patch: "strategic"
