@@ -4,7 +4,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: service-a
+  name: retail-store-ui
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
 spec:
@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/JoudAwad97/app-of-apps
     # path of the service in the files
-    path: service-a/overlays/dev
+    path: retail-store-ui/overlays/dev
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc

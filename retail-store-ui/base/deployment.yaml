@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: retail-store-ui
+  namespace: retail-store
+  labels:
+    app: retail-store-ui
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: retail-store-ui
+  template:
+    metadata:
+      labels:
+        app: retail-store-ui
+    spec:
+      containers:
+        - name: retail-store-ui
+          image: public.ecr.aws/aws-containers/retail-store-sample-ui:0.5.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JAVA_OPTS
+              value: "-XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/urandom"
+            - name: SERVER_TOMCAT_ACCESSLOG_ENABLED
+              value: "true"
+            - name: ENDPOINTS_CATALOG
+              value: "http://catalog:8080"
+            - name: ENDPOINTS_CARTS
+              value: "http://carts:8080"
+            - name: ENDPOINTS_ORDERS
+              value: "http://orders:8080"
+            - name: ENDPOINTS_CHECKOUT
+              value: "http://checkout:8080"
+            - name: ENDPOINTS_ASSETS
+              value: "http://assets:8080"
