@@ -2,8 +2,19 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: service-a
-  # this namespace is required for some reason
+  # this namespace is required by kustomization v3.0 and above
   namespace: argocd
 spec:
   source:
     path: service-a/overlays/dev
+# List all the services in the app of apps module in here
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: service-b
+  # this namespace is required by kustomization v3.0 and above
+  namespace: argocd
+spec:
+  source:
+    path: service-b/overlays/dev

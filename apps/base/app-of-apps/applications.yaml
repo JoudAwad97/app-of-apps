@@ -1,16 +1,23 @@
+# the current file define the syncing and options related to the "services" created from the app-of-apps
+# this is different from the one in the "terraform module", this one in here is responsible of syncing "services" in the app-of-apps module
+# while the one in the terraform is responsible of creating the application that connect those services to it
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: service-a
+  # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
 spec:
+  # the same name of the project where you are extending this services
   project: default
   source:
     repoURL: https://github.com/JoudAwad97/app-of-apps
+    # path of the service in the files
     path: service-a/overlays/dev
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
+  # service syncing options
   syncPolicy:
     automated:
       prune: true
