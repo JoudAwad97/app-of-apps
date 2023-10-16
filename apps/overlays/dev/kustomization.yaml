@@ -1,4 +1,4 @@
-bases:
+resources:
   - ../../base/app-of-apps
-patchesStrategicMerge:
+patches:
   - applications-patch.yaml
