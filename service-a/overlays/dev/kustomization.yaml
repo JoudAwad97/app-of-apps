@@ -2,4 +2,3 @@ resources:
   - ../../base
 patches:
   - path: deployment-patch.yaml
-    patch: "strategic"
