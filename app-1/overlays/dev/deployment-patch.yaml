@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-b
+  name: app-1
+  namespace: retail-store
 spec:
   replicas: 3
