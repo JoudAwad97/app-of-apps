@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: service-a
+  # the namespace here is also required
+  namespace: retail-store
 spec:
   replicas: 1
   template:
