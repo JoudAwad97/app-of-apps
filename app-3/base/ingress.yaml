@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-3-ingress
+  namespace: retail-store
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: retail-app-group
+    alb.ingress.kubernetes.io/group.order: "3"
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+          - path: /db
+            pathType: Prefix
+            backend:
+              service:
+                name: app-3
+                port:
+                  number: 80
