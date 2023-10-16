@@ -32,7 +32,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: service-b
+  name: app-1
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
 spec:
@@ -41,7 +41,7 @@ spec:
   source:
     repoURL: https://github.com/JoudAwad97/app-of-apps
     # path of the service in the files
-    path: service-b/overlays/dev
+    path: app-1/overlays/dev
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc

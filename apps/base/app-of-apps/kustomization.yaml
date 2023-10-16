@@ -6,3 +6,4 @@ metadata:
 resources:
   # only allow to change the applications.yaml file from the base app-of-apps module
   - applications.yaml
+  - namespace.yaml

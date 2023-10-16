@@ -2,9 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: retail-store-ui
-  namespace: retail-store
-  labels:
-    app: retail-store-ui
 spec:
   template:
     spec:

@@ -2,3 +2,5 @@
 namespace: retail-store
 resources:
   - deployment.yaml
+  - ingress.yaml
+  - service.yaml
