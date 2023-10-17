@@ -3,9 +3,6 @@ kind: Deployment
 metadata:
   name: app-3
   namespace: retail-store
-  annotations:
-    proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
-    status.sidecar.istio.io/port: "0"
   labels:
     app: app-3
     db: rds
@@ -16,7 +13,8 @@ spec:
       app: app-3
   template:
     metadata:
-      status.sidecar.istio.io/port: "0"
+      annotations:
+        sidecar.istio.io/rewriteAppHTTPProbers: "false"
       labels:
         app: app-3
     spec:
