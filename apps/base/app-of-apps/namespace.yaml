@@ -4,5 +4,5 @@ metadata:
   name: retail-store
   labels:
     monitoring: prometheus
-    #istio-injection: enabled
+    istio-injection: enabled
     app.kubernetes.io/version: enabled
