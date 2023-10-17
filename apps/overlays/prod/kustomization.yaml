@@ -1,0 +1,11 @@
+# Kustomize does not support patching from a single file, there for we will have to have a separate file for each app
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base/app-of-apps
+patches:
+  - path: app-1-patch.yaml
+  - path: app-2-patch.yaml
+  - path: app-3-patch.yaml
+  - path: stateful-patch.yaml
+  - path: retail-store-ui-patch.yaml
