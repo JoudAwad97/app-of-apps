@@ -6,7 +6,7 @@ metadata:
   labels:
     app: retail-store-ui
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: retail-store-ui

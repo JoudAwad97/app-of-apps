@@ -4,4 +4,4 @@ metadata:
   name: app-2
   namespace: retail-store
 spec:
-  replicas: 3
+  replicas: 1
