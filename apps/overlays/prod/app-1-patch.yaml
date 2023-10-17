@@ -5,5 +5,6 @@ metadata:
   name: app-1
   namespace: argocd
 spec:
+  project: prod
   source:
     path: app-1/overlays/prod
