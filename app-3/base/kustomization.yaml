@@ -7,3 +7,4 @@ resources:
   - security-group.yaml
   - service-account.yaml
   - service.yaml
+  - sealed-secret.yaml
