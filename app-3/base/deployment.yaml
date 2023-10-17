@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   name: app-3
   namespace: retail-store
-  proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
+  annotations:
+    proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
   labels:
     app: app-3
     db: rds
