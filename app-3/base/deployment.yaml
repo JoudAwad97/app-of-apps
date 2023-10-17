@@ -16,6 +16,7 @@ spec:
       app: app-3
   template:
     metadata:
+      status.sidecar.istio.io/port: "0"
       labels:
         app: app-3
     spec:
