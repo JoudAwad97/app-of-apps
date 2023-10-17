@@ -5,6 +5,7 @@ metadata:
   namespace: retail-store
   annotations:
     proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
+    status.sidecar.istio.io/port: "0"
   labels:
     app: app-3
     db: rds
