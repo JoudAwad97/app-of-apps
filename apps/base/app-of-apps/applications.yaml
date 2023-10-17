@@ -7,6 +7,8 @@ metadata:
   name: retail-store-ui
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -35,6 +37,8 @@ metadata:
   name: app-1
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -63,6 +67,8 @@ metadata:
   name: app-2
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -91,6 +97,8 @@ metadata:
   name: stateful
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -119,6 +127,8 @@ metadata:
   name: app-3
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   # the same name of the project where you are extending this services
   project: default
