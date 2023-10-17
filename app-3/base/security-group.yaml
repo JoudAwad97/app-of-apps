@@ -1,12 +1,12 @@
-# apiVersion: vpcresources.k8s.aws/v1beta1
-# kind: SecurityGroupPolicy
-# metadata:
-#   name: rds-security-group-policy
-#   namespace: retail-store
-# spec:
-#   podSelector:
-#     matchLabels:
-#       app: app-3
-#   securityGroups:
-#     groupIds:
-#       - sg-00a48c151456d4110
+apiVersion: vpcresources.k8s.aws/v1beta1
+kind: SecurityGroupPolicy
+metadata:
+  name: rds-security-group-policy
+  namespace: retail-store
+spec:
+  podSelector:
+    matchLabels:
+      app: app-3
+  securityGroups:
+    groupIds:
+      - sg-00a48c151456d4110
