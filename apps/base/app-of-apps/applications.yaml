@@ -10,6 +10,9 @@ metadata:
   # use the "finalizers" to remove any resources when the yaml file is changed/deleted, by default ArgoCD does not delete resources automatically
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: thejoud1997/app-1:~v0.1
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   # the same name of the project where you are extending this services
   project: default
