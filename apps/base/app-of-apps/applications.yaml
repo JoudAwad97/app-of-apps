@@ -17,7 +17,7 @@ spec:
   # the same name of the project where you are extending this services
   project: default
   source:
-    repoURL: https://github.com/JoudAwad97/app-of-apps
+    repoURL: ssh://git@github.com/JoudAwad97/app-of-apps
     # path of the service in the files
     path: retail-store-ui/overlays/dev
     targetRevision: HEAD
