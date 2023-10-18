@@ -47,7 +47,7 @@ spec:
   # the same name of the project where you are extending this services
   project: default
   source:
-    repoURL: https://github.com/JoudAwad97/app-of-apps
+    repoURL: ssh://git@github.com/JoudAwad97/app-of-apps.git
     # path of the service in the files
     path: app-1/overlays/dev
     targetRevision: main
@@ -77,7 +77,7 @@ spec:
   # the same name of the project where you are extending this services
   project: default
   source:
-    repoURL: https://github.com/JoudAwad97/app-of-apps
+    repoURL: ssh://git@github.com/JoudAwad97/app-of-apps.git
     # path of the service in the files
     path: app-2/overlays/dev
     targetRevision: HEAD
@@ -107,7 +107,7 @@ spec:
   # the same name of the project where you are extending this services
   project: default
   source:
-    repoURL: https://github.com/JoudAwad97/app-of-apps
+    repoURL: ssh://git@github.com/JoudAwad97/app-of-apps.git
     # path of the service in the files
     path: stateful/overlays/dev
     targetRevision: HEAD
@@ -137,7 +137,7 @@ spec:
   # the same name of the project where you are extending this services
   project: default
   source:
-    repoURL: https://github.com/JoudAwad97/app-of-apps
+    repoURL: ssh://git@github.com/JoudAwad97/app-of-apps.git
     # path of the service in the files
     path: app-3/overlays/dev
     targetRevision: HEAD
