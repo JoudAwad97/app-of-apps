@@ -1,0 +1,51 @@
+version: 0.2
+
+env:
+  variables:
+    REPOSITORY_URI: "your-ecr-repository-uri"
+
+phases:
+  install:
+    commands:
+      - echo Installing jq for JSON parsing...
+      - apt-get update && apt-get install -y jq
+
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
+      - |
+        # Dynamically determine the image tag based on the branch
+        case $CODEBUILD_WEBHOOK_HEAD_REF in
+          "refs/heads/dev")
+            IMAGE_TAG="latest"
+            ;;
+          "refs/heads/uat")
+            # Extract the current major version and latest minor version from ECR, then increment the minor version
+            LATEST_VERSION=$(aws ecr list-images --repository-name your-repository-name | jq -r '.imageIds[] | select(.imageTag | test("^[0-9]+\.[0-9]+$")) | .imageTag' | sort -V | tail -1)
+            MAJOR_VERSION=${LATEST_VERSION%%.*}
+            MINOR_VERSION=${LATEST_VERSION#*.}
+            IMAGE_TAG="$MAJOR_VERSION.$(( MINOR_VERSION + 1 )).0"
+            ;;
+          "refs/heads/prod")
+            # Extract the latest major version from ECR, increment it, and reset minor and patch versions
+            LATEST_MAJOR_VERSION=$(aws ecr list-images --repository-name your-repository-name | jq -r '.imageIds[] | select(.imageTag | test("^[0-9]+\.")) | .imageTag' | sort -V | tail -1 | cut -d. -f1)
+            IMAGE_TAG="$(( LATEST_MAJOR_VERSION + 1 )).0.0"
+            ;;
+          *)
+            # Default tag if none of the conditions match
+            IMAGE_TAG="latest"
+            ;;
+        esac
+
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
+
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest
