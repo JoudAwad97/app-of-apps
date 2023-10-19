@@ -43,8 +43,8 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: thejoud1997/app-1
     argocd-image-updater.argoproj.io/write-back-method: git
-    argocd-image-updater.argoproj.io/thejoud1997/app-1.update-strategy: latest
-    argocd-image-updater.argoproj.io/thejoud1997/app-1.filter: "regexp:^.*-dev$"
+    argocd-image-updater.argoproj.io/thejoud1997-app-1.update-strategy: latest
+    argocd-image-updater.argoproj.io/thejoud1997-app-1.filter: "regexp:^.*-dev$"
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -78,8 +78,8 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: thejoud1997/app-2
     argocd-image-updater.argoproj.io/write-back-method: git
-    argocd-image-updater.argoproj.io/thejoud1997/app-2.update-strategy: latest
-    argocd-image-updater.argoproj.io/thejoud1997/app-2.filter: "regexp:^.*-dev$"
+    argocd-image-updater.argoproj.io/thejoud1997-app-2.update-strategy: latest
+    argocd-image-updater.argoproj.io/thejoud1997-app-2.filter: "regexp:^.*-dev$"
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -143,8 +143,8 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: thejoud1997/app-3
     argocd-image-updater.argoproj.io/write-back-method: git
-    argocd-image-updater.argoproj.io/thejoud1997/app-3.update-strategy: latest
-    argocd-image-updater.argoproj.io/thejoud1997/app-3.filter: "regexp:^.*-dev$"
+    argocd-image-updater.argoproj.io/thejoud1997-app-3.update-strategy: latest
+    argocd-image-updater.argoproj.io/thejoud1997-app-3.filter: "regexp:^.*-dev$"
 spec:
   # the same name of the project where you are extending this services
   project: default
