@@ -110,11 +110,6 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: thejoud1997/stateful
-    argocd-image-updater.argoproj.io/write-back-method: git
-    argocd-image-updater.argoproj.io/thejoud1997/stateful.update-strategy: latest
-    argocd-image-updater.argoproj.io/thejoud1997/stateful.filter: "regexp:^.*-dev$"
 spec:
   # the same name of the project where you are extending this services
   project: default
