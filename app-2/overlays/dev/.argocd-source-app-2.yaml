@@ -1,3 +1,3 @@
 kustomize:
   images:
-  - thejoud1997/app-2:asdjk123-dev
+  - thejoud1997/app-2:8d93ceedf6bc1a6dda9065eb4317792f69ac6e8e
