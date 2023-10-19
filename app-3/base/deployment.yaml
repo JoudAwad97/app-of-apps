@@ -20,7 +20,7 @@ spec:
     spec:
       serviceAccountName: app-3
       containers:
-        - image: thejoud1997/app-3:mysql
+        - image: thejoud1997/app-3:latest
           name: app-3
           ports:
             - containerPort: 3000
