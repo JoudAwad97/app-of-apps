@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: app-1
-          image: thejoud1997/app-1:v0.1.0
+          image: thejoud1997/app-1:latest
           ports:
             - containerPort: 3000

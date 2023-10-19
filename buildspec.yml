@@ -1,51 +1,37 @@
 version: 0.2
 
-env:
-  variables:
-    REPOSITORY_URI: "your-ecr-repository-uri"
-
 phases:
-  install:
-    commands:
-      - echo Installing jq for JSON parsing...
-      - apt-get update && apt-get install -y jq
-
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
+      - echo "Logging in to Amazon ECR..."
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - echo "Reading current version..."
+      - CURRENT_VERSION=$(cat package.json | jq -r .version)
+      - MAJOR=$(echo $CURRENT_VERSION | cut -d. -f1)
+      - MINOR=$(echo $CURRENT_VERSION | cut -d. -f2)
+      - PATCH=$(echo $CURRENT_VERSION | cut -d. -f3)
       - |
-        # Dynamically determine the image tag based on the branch
-        case $CODEBUILD_WEBHOOK_HEAD_REF in
-          "refs/heads/dev")
-            IMAGE_TAG="latest"
-            ;;
-          "refs/heads/uat")
-            # Extract the current major version and latest minor version from ECR, then increment the minor version
-            LATEST_VERSION=$(aws ecr list-images --repository-name your-repository-name | jq -r '.imageIds[] | select(.imageTag | test("^[0-9]+\.[0-9]+$")) | .imageTag' | sort -V | tail -1)
-            MAJOR_VERSION=${LATEST_VERSION%%.*}
-            MINOR_VERSION=${LATEST_VERSION#*.}
-            IMAGE_TAG="$MAJOR_VERSION.$(( MINOR_VERSION + 1 )).0"
-            ;;
-          "refs/heads/prod")
-            # Extract the latest major version from ECR, increment it, and reset minor and patch versions
-            LATEST_MAJOR_VERSION=$(aws ecr list-images --repository-name your-repository-name | jq -r '.imageIds[] | select(.imageTag | test("^[0-9]+\.")) | .imageTag' | sort -V | tail -1 | cut -d. -f1)
-            IMAGE_TAG="$(( LATEST_MAJOR_VERSION + 1 )).0.0"
-            ;;
-          *)
-            # Default tag if none of the conditions match
-            IMAGE_TAG="latest"
-            ;;
-        esac
-
+        if [ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/dev" ]; then
+            PATCH=$((PATCH + 1))
+        elif [ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/staging" ]; then
+            MINOR=$((MINOR + 1))
+            PATCH=0
+        elif [ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/prod" ]; then
+            MAJOR=$((MAJOR + 1))
+            MINOR=0
+            PATCH=0
+        fi
+      - NEW_VERSION="$MAJOR.$MINOR.$PATCH-$CODEBUILD_WEBHOOK_TRIGGER"
+      - echo "New version: $NEW_VERSION"
   build:
     commands:
-      - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
-      - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
-
+      - docker build -t $REPOSITORY_URI:$NEW_VERSION .
   post_build:
     commands:
-      - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - docker push $REPOSITORY_URI:latest
+      - echo "Pushing Docker image..."
+      - docker push $REPOSITORY_URI:$NEW_VERSION
+      - echo "Updating VERSION file..."
+      - echo $NEW_VERSION > VERSION
+      - git add VERSION
+      - git commit -m "Update to version $NEW_VERSION"
+      - git push origin $CODEBUILD_WEBHOOK_TRIGGER
