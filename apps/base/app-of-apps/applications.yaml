@@ -85,7 +85,7 @@ spec:
     repoURL: ssh://git@github.com/JoudAwad97/app-of-apps.git
     # path of the service in the files
     path: app-2/overlays/dev
-    targetRevision: HEAD
+    targetRevision: main
   destination:
     server: https://kubernetes.default.svc
   # service syncing options
@@ -115,7 +115,7 @@ spec:
     repoURL: ssh://git@github.com/JoudAwad97/app-of-apps.git
     # path of the service in the files
     path: stateful/overlays/dev
-    targetRevision: HEAD
+    targetRevision: main
   destination:
     server: https://kubernetes.default.svc
   # service syncing options
