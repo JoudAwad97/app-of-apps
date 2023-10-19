@@ -7,7 +7,6 @@ metadata:
       argocd-image-updater.argoproj.io/image-list: my-container-image=quay.io/my-org/my-image
       argocd-image-updater.argoproj.io/write-back-method: git
       argocd-image-updater.argoproj.io/my-container-image.update-strategy: latest
-      argocd-image-updater.argoproj.io/my-container-image.tag-prefix: <commit-hash>-dev
 
 # Staging ArgoCD Application
 metadata:
