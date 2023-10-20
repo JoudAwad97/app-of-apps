@@ -1,35 +1,3 @@
-### main app of apps project
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: default
-  # namespace should be the same one where you have ArgoCD installed
-  namespace: argocd
-  # use the "finalizers" to remove any resources when the yaml file is changed/deleted, by default ArgoCD does not delete resources automatically
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  # the same name of the project where you are extending this services
-  project: default
-  source:
-    repoURL: https://github.com/JoudAwad97/app-of-apps
-    # path of the service in the files
-    path: apps/overlays/dev
-    targetRevision: main
-  destination:
-    server: https://kubernetes.default.svc
-  # service syncing options
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: false
-    syncOptions:
-      - Validate=true
-      - CreateNamespace=false
-      - PrunePropagationPolicy=foreground
-      - PruneLast=true
----
 # the current file define the syncing and options related to the "services" created from the app-of-apps
 # this is different from the one in the "terraform module", this one in here is responsible of syncing "services" in the app-of-apps module
 # while the one in the terraform is responsible of creating the application that connect those services to it
