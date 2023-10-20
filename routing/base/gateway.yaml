@@ -5,7 +5,7 @@ metadata:
   namespace: retail-store
 spec:
   selector:
-    istio: ingressgateway # use Istio default gateway implementation
+    istio: gateway # use Istio default gateway implementation
   servers:
     - port:
         number: 80
