@@ -8,8 +8,8 @@ metadata:
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
   # use the "finalizers" to remove any resources when the yaml file is changed/deleted, by default ArgoCD does not delete resources automatically
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  #finalizers:
+  #  - resources-finalizer.argocd.argoproj.io
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -38,8 +38,8 @@ metadata:
   name: app-1
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  #finalizers:
+  #  - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd-image-updater.argoproj.io/image-list: app-1=thejoud1997/app-1
     argocd-image-updater.argoproj.io/write-back-method: git
@@ -72,8 +72,8 @@ metadata:
   name: app-2
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  #finalizers:
+  #  - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd-image-updater.argoproj.io/image-list: app-2=thejoud1997/app-2
     argocd-image-updater.argoproj.io/write-back-method: git
@@ -106,8 +106,8 @@ metadata:
   name: stateful
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  #finalizers:
+  #  - resources-finalizer.argocd.argoproj.io
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -136,8 +136,8 @@ metadata:
   name: app-3
   # namespace should be the same one where you have ArgoCD installed
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  #finalizers:
+  #  - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd-image-updater.argoproj.io/image-list: app-3=thejoud1997/app-3
     argocd-image-updater.argoproj.io/write-back-method: git
