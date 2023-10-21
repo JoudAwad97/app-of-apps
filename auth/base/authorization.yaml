@@ -31,6 +31,6 @@ spec:
     - from:
         - source:
             requestPrincipals: ["*"]
-    # - when:
-    #     - key: request.auth.claims[email_verified]
-    #       values: ["true"]
+    - when:
+        - key: request.auth.claims[email_verified]
+          values: ["true"]
