@@ -1,6 +1,9 @@
 # RequestAuthentication provides a way of setting up JWT providers that we can use for authentication
 # this will allow us to specify what are the 3rd party libraries we want to use to handle the auth
 # this example will use firebase as an issuer so "istio" can use it to validate the authentication
+# ---
+# Because the "RequestAuthentication" is defined in the namespace "retail-store" it will only apply those providers to this namespace only
+# if we want to make this a global option among all the other namespaces we would use the namespace "istio-system"
 apiVersion: security.istio.io/v1beta1
 kind: RequestAuthentication
 metadata:
@@ -12,7 +15,8 @@ spec:
     matchLabels:
       auth: custom
   jwtRules:
-    - issuer: "https://securetoken.google.com/f2-dev-91107"
+    # Firebase auth initialization
+    - issuer: "https://securetoken.google.com/f2-dev-91107" # "f2-dev-91107" is the project id
       jwksUri: "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com"
 ---
 # Enforce that all incoming requests to your service have a valid JWT
@@ -31,6 +35,6 @@ spec:
     - from:
         - source:
             requestPrincipals: ["*"]
-    - when:
+      when:
         - key: request.auth.claims[email_verified]
           values: ["true"]
