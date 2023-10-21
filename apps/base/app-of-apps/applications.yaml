@@ -202,6 +202,10 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: auth=thejoud1997/auth
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/auth.update-strategy: latest
 spec:
   # the same name of the project where you are extending this services
   project: default
