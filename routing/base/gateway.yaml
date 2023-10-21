@@ -1,39 +1,38 @@
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: my-gateway
+  name: gateway
   namespace: istio-system
 spec:
-  selector:
-    istio: gateway # should match the label on the "pod" in the "istio-system" for the "gateway" deployment
-  servers:
-    - port:
-        number: 80
-        name: http
-        protocol: HTTP
-      hosts:
-        - "*" # Domain name of the external website
+  gatewayClassName: istio
+  listeners:
+    - name: default
+      hostname: "*"
+      port: 80
+      protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: All
 ---
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
 metadata:
-  name: path-routing
-  namespace: istio-system
+  name: http
+  namespace: retail-store
 spec:
-  hosts:
-    - "*"
-  gateways:
-    - my-gateway
-  http:
-    - match:
-        - uri:
-            prefix: /*
-      route:
-        - destination:
-            host: app-1.retail-store.svc.cluster.local
-            port:
-              number: 80
+  parentRefs:
+    - name: gateway
+      namespace: istio-system
+  hostnames: ["*"]
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: app-1
+          port: 80
 # ---
 # apiVersion: security.istio.io/v1beta1
 # kind: PeerAuthentication
