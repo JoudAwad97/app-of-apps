@@ -28,6 +28,14 @@ spec:
   http:
     - match:
         - uri:
+            prefix: /db
+          route:
+            - destination:
+                host: app-3.retail-store.svc.cluster.local
+                port:
+                  number: 80
+    - match:
+        - uri:
             prefix: /
       route:
         - destination:
