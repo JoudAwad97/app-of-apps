@@ -28,9 +28,9 @@ spec:
         - header: x-auth-email
           claim: email
         - header: x-auth-email-verified
-          claim: outputClaimToHeaders
+          claim: email_verified
         - header: x-auth-identities
-          claim: firebase
+          claim: firebase.identities
 ---
 # Enforce that all incoming requests to your service have a valid JWT
 apiVersion: security.istio.io/v1beta1
