@@ -17,7 +17,7 @@ spec:
   jwtRules:
     # Firebase auth initialization
     - issuer: "https://securetoken.google.com/f2-dev-91107" # "f2-dev-91107" is the project id
-      jwksUri: "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com"
+      jwksUri: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-i1lqv%40f2-dev-91107.iam.gserviceaccount.com"
 ---
 # Enforce that all incoming requests to your service have a valid JWT
 apiVersion: security.istio.io/v1beta1
