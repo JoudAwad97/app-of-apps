@@ -25,12 +25,16 @@ spec:
       forwardOriginalToken: true
       # This field specifies a list of operations to copy the claim to HTTP headers on a successfully verified token. This differs from the output_payload_to_header by allowing outputting individual claims instead of the whole payload. The header specified in each operation in the list must be unique. Nested claims of type string/int/bool is supported as well.
       outputClaimToHeaders:
+        # name of the header to send to the original service
         - header: x-auth-email
+          # name of the claim in the decoded jwt (firebase)
           claim: email
         - header: x-auth-email-verified
           claim: email_verified
         - header: x-auth-identities
           claim: firebase.identities.email
+        - header: x-auth-user-id
+          claim: user_id
 ---
 # Enforce that all incoming requests to your service have a valid JWT
 apiVersion: security.istio.io/v1beta1
