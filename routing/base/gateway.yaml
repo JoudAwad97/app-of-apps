@@ -24,7 +24,7 @@ spec:
   hosts:
     - "*"
   gateways:
-    - istio-system/ingress-gateway-configuration
+    - istio-system/gateway
   http:
     - match:
         - uri:
@@ -34,12 +34,12 @@ spec:
             host: app-1.retail-store.svc.cluster.local
             port:
               number: 80
-# ---
-# apiVersion: security.istio.io/v1beta1
-# kind: PeerAuthentication
-# metadata:
-#   name: enable-mtls
-#   namespace: retail-store
-# spec:
-#   mtls:
-#     mode: STRICT
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: enable-mtls
+  namespace: retail-store
+spec:
+  mtls:
+    mode: STRICT
