@@ -1,38 +1,39 @@
 ---
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: gateway
-  namespace: istio-system
+  name: httpbin-gateway
 spec:
-  gatewayClassName: istio
-  listeners:
-    - name: default
-      hostname: "*"
-      port: 80
-      protocol: HTTP
-      allowedRoutes:
-        namespaces:
-          from: All
+  # The selector matches the ingress gateway pod labels.
+  # If you installed Istio using Helm following the standard documentation, this would be "istio=ingress"
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
 ---
-apiVersion: gateway.networking.k8s.io/v1beta1
-kind: HTTPRoute
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
 metadata:
-  name: http
-  namespace: retail-store
+  name: httpbin
 spec:
-  parentRefs:
-    - name: gateway
-      namespace: istio-system
-  hostnames: ["*"]
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
-        - name: app-1
-          port: 80
+  hosts:
+    - "*"
+  gateways:
+    - httpbin-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: app-1.retail-store.svc.cluster.local
+            port:
+              number: 80
 # ---
 # apiVersion: security.istio.io/v1beta1
 # kind: PeerAuthentication
