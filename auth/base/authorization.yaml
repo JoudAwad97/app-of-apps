@@ -23,7 +23,14 @@ spec:
       outputPayloadToHeader: "x-auth"
       # If set to true, the original token will be kept for the upstream request. Default is false.
       forwardOriginalToken: true
-      #
+      # This field specifies a list of operations to copy the claim to HTTP headers on a successfully verified token. This differs from the output_payload_to_header by allowing outputting individual claims instead of the whole payload. The header specified in each operation in the list must be unique. Nested claims of type string/int/bool is supported as well.
+      outputClaimToHeaders:
+        - header: x-auth-email
+          claim: email
+        - header: x-auth-email-verified
+          claim: outputClaimToHeaders
+        - header: x-auth-identities
+          claim: firebase
 ---
 # Enforce that all incoming requests to your service have a valid JWT
 apiVersion: security.istio.io/v1beta1
