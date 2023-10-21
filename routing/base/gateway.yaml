@@ -2,7 +2,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: custom-gateway
+  name: my-gateway
   namespace: istio-system
 spec:
   selector:
@@ -24,7 +24,7 @@ spec:
   hosts:
     - "*"
   gateways:
-    - custom-gateway
+    - my-gateway
   http:
     - match:
         - uri:
