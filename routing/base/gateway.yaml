@@ -31,11 +31,11 @@ spec:
     - match:
         - uri:
             prefix: /db
-          route:
-            - destination:
-                host: app-3.retail-store.svc.cluster.local
-                port:
-                  number: 80
+      route:
+        - destination:
+            host: app-3.retail-store.svc.cluster.local
+            port:
+              number: 80
     - match:
         - uri:
             prefix: /
@@ -48,7 +48,7 @@ spec:
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
-  name: enable-mtls
+  name: default
   namespace: retail-store
 spec:
   mtls:
