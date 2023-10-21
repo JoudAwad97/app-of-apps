@@ -38,6 +38,14 @@ spec:
               number: 80
     - match:
         - uri:
+            prefix: /auth
+      route:
+        - destination:
+            host: auth.retail-store.svc.cluster.local
+            port:
+              number: 80
+    - match:
+        - uri:
             prefix: /
       route:
         - destination:
