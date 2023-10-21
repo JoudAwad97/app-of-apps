@@ -6,12 +6,12 @@ metadata:
   labels:
     app: app-3
     db: rds
+    auth: custom
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: app-3
-      auth: custom
   template:
     metadata:
       annotations:
