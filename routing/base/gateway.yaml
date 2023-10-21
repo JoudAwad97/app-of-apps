@@ -48,7 +48,7 @@ spec:
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
-  name: default
+  name: enable-mtls
   namespace: retail-store
 spec:
   mtls:
