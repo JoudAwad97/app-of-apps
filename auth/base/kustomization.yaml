@@ -3,3 +3,4 @@ namespace: retail-store
 resources:
   - deployment.yaml
   - service.yaml
+  - custom-authorizer.yaml
