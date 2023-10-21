@@ -1,0 +1,27 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  meshConfig:
+    extensionProviders:
+      - name: "custom-authorizer"
+        envoyExtAuthzHttp:
+          service: "auth.retail-store.svc.cluster.local"
+          port: 80
+          includeHeadersInCheck: ["x-auth-header"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: custom-authorizer
+  namespace: retail-store
+spec:
+  selector:
+    matchLabels:
+      auth: custom
+  action: CUSTOM
+  provider:
+    name: "custom-authorizer"
+  rules:
+    - to:
+        - operation:
+            paths: ["*"]

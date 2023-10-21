@@ -11,6 +11,7 @@ spec:
   selector:
     matchLabels:
       app: app-3
+      auth: custom
   template:
     metadata:
       annotations:
