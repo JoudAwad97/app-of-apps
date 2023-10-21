@@ -5,8 +5,6 @@ metadata:
   namespace: retail-store
   labels:
     app: app-3
-    db: rds
-    auth: custom
 spec:
   replicas: 1
   selector:
@@ -18,6 +16,8 @@ spec:
         sidecar.istio.io/rewriteAppHTTPProbers: "false"
       labels:
         app: app-3
+        db: rds
+        auth: custom
     spec:
       serviceAccountName: app-3
       containers:
