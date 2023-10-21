@@ -37,4 +37,4 @@ spec:
             requestPrincipals: ["*"]
       when:
         - key: request.auth.claims[email_verified]
-          values: ["true"]
+          values: ["true", "false"]
