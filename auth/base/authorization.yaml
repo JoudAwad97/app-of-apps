@@ -13,7 +13,7 @@ spec:
       auth: custom
   jwtRules:
     - issuer: "https://securetoken.google.com/f2-dev-91107"
-      jwksUri: "https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys"
+      jwksUri: "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com" # "https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys"
 ---
 # Enforce that all incoming requests to your service have a valid JWT
 apiVersion: security.istio.io/v1beta1
