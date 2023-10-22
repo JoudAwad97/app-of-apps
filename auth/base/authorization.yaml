@@ -48,6 +48,9 @@ spec:
       app: istio-ingressgateway
   action: ALLOW
   rules:
+    - from:
+        - source:
+            requestPrincipals: ["*"]
     - to:
         - operation:
             paths: ["/"]
