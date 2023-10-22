@@ -54,26 +54,24 @@ spec:
     - to:
         - operation:
             paths: ["/"]
-# ---
+---
 # Enforce that all incoming requests to your service have a valid JWT
-# apiVersion: security.istio.io/v1beta1
-# kind: AuthorizationPolicy
-# metadata:
-#   name: require-jwt
-#   namespace: istio-system
-# spec:
-#   # Which Pods will have this "AuthorizationPolicy" applied to it
-#   selector:
-#     matchLabels:
-#       app: istio-ingressgateway
-#   action: ALLOW
-#   rules:
-#     - from:
-#         - source:
-#             requestPrincipals:
-#               ["*"]
-#
-# add conditions on the claims outlined from the JWT
-# when:
-#   - key: request.auth.claims[email]
-#     values: ["thejoud001@gmail.com"]
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: require-jwt
+  namespace: istio-system
+spec:
+  # Which Pods will have this "AuthorizationPolicy" applied to it
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            requestPrincipals: ["*"]
+            # add conditions on the claims outlined from the JWT
+          when:
+            - key: request.auth.claims[email]
+              values: ["thejoud001@gmail.com"]
