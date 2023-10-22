@@ -52,7 +52,7 @@ spec:
             requestPrincipals: ["*"]
     - to:
         - operation:
-            paths: ["/auth/*"]
+            paths: ["/", "/auth/*"]
 ---
 # Enforce that all incoming requests to your service have a valid JWT
 apiVersion: security.istio.io/v1beta1
