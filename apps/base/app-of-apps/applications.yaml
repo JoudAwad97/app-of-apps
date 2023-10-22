@@ -227,3 +227,35 @@ spec:
       - CreateNamespace=false
       - PrunePropagationPolicy=foreground
       - PruneLast=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8s-routing
+  # namespace should be the same one where you have ArgoCD installed
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # the same name of the project where you are extending this services
+  project: default
+  source:
+    repoURL: ssh://git@github.com/JoudAwad97/app-of-apps.git
+    # path of the service in the files
+    path: auth-k8/overlays/dev
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+  # service syncing options
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=false
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+---
+
