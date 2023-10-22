@@ -72,6 +72,6 @@ spec:
         - source:
             requestPrincipals: ["*"]
             # add conditions on the claims outlined from the JWT
-          when:
-            - key: request.auth.claims[email]
-              values: ["thejoud001@gmail.com"]
+      when:
+        - key: request.auth.claims[email]
+          values: ["thejoud001@gmail.com"]
