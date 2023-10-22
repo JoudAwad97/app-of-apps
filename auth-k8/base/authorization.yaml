@@ -1,9 +1,14 @@
 # RequestAuthentication provides a way of setting up JWT providers that we can use for authentication
 # this will allow us to specify what are the 3rd party libraries we want to use to handle the auth
-# this example will use firebase as an issuer so "istio" can use it to validate the authentication
+# this example will use firebase as an issuer so "istio" can use it to validate the authentication, no code is needed from our side
 # ---
 # Because the "RequestAuthentication" is defined in the namespace "retail-store" it will only apply those providers to this namespace only
 # if we want to make this a global option among all the other namespaces we would use the namespace "istio-system"
+# this namespace is extended from the namespace in the "kustomization.yaml" of this app
+# ---
+# IMPORTANT: by default when we setup this "RequestAuthentication" it get applied to all the routes by default, so now any URL we want to access through
+# the "app: istio-ingressgateway" will need to authenticate through this provided
+# to avoid some specific URLs from authentication we can use "AuthorizationPolicy"
 apiVersion: security.istio.io/v1beta1
 kind: RequestAuthentication
 metadata:
@@ -35,6 +40,10 @@ spec:
         - header: x-auth-user-id
           claim: user_id
 ---
+# AuthorizationPolicy is used to define specific rules against the "RequestAuthentication", we can either:
+# 1. require specific matching of the JWT payload
+# 2. allow for some URLs to be access without a JWT token
+# in this block we use it to allow some URLs like "/" and "/auth/*" to be accessed without the JWT token
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -54,7 +63,7 @@ spec:
         - operation:
             paths: ["/", "/auth/*"]
 # ---
-# # Enforce that all incoming requests to your service have a valid JWT
+# Enforce that all incoming requests to your service have a token with a claim (field) in it with a value "thejoud001@gmail.com"
 # apiVersion: security.istio.io/v1beta1
 # kind: AuthorizationPolicy
 # metadata:
