@@ -36,6 +36,22 @@ spec:
         - header: x-auth-user-id
           claim: user_id
 ---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-app-1-view
+  namespace: istio-system
+spec:
+  # Which Pods will have this "AuthorizationPolicy" applied to it
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+  action: ALLOW
+  rules:
+    - to:
+        - operation:
+            paths: ["/"]
+---
 # Enforce that all incoming requests to your service have a valid JWT
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
