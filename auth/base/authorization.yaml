@@ -8,7 +8,7 @@ apiVersion: security.istio.io/v1beta1
 kind: RequestAuthentication
 metadata:
   name: firebase-authn
-  namespace: istio-system
+  namespace: istio-ingress
 spec:
   # Which Pods will have this "RequestAuthorization" applied to it
   selector:
@@ -40,7 +40,7 @@ apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: allow-app-1-view
-  namespace: istio-system
+  namespace: istio-ingress
 spec:
   # Which Pods will have this "AuthorizationPolicy" applied to it
   selector:
@@ -60,7 +60,7 @@ apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: require-jwt
-  namespace: istio-system
+  namespace: istio-ingress
 spec:
   # Which Pods will have this "AuthorizationPolicy" applied to it
   selector:
