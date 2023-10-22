@@ -8,12 +8,12 @@ apiVersion: security.istio.io/v1beta1
 kind: RequestAuthentication
 metadata:
   name: firebase-authn
-  namespace: retail-store
+  namespace: istio-system
 spec:
   # Which Pods will have this "RequestAuthorization" applied to it
   selector:
     matchLabels:
-      auth: custom # to enforce this on all the request coming use "app: istio-ingressgateway"
+      app: istio-ingressgateway # to enforce this on all the request coming use "app: istio-ingressgateway"
   jwtRules:
     # Firebase auth initialization
     - issuer: "https://securetoken.google.com/f2-dev-91107" # "f2-dev-91107" is the project id
@@ -41,12 +41,12 @@ apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: require-jwt
-  namespace: retail-store
+  namespace: istio-system
 spec:
   # Which Pods will have this "AuthorizationPolicy" applied to it
   selector:
     matchLabels:
-      auth: custom
+      app: istio-ingressgateway
   action: ALLOW
   rules:
     - from:
