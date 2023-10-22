@@ -41,6 +41,8 @@ Istio allow us to handle logic separately by using built-in object that allow us
 `AuthorizationPolicy` on the other hand allow us to deal with setting up custom routing rules, such as allow some rules to be accessed without the need to `authenticate`
 allow us to specify some certain `claims` matching for certain routes, like user should have a role of `admin` to access the urls that start with `/admin/*`
 
+Important to note that ISTIO `RequestAuthentication` only validate the requests coming from the selected pod in our case we are selecting the `ingress gateway` which creates a load balancer in the AWS, this will allow us to authenticate requests from `end users` and not `service to service` communication
+
 # Attached BuildSpec:
 
 the attached buildspec can be used to build any service using ECR, it uses the above tagging policy to build, tag and push the image
