@@ -11,4 +11,4 @@ spec:
   securityGroups:
     groupIds:
       - sg-00a48c151456d4110
-      #- sg-00f69cba7f507b71f
+      # - sg-00f69cba7f507b71f
