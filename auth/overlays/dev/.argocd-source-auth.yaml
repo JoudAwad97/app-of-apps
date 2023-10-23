@@ -1,3 +1,3 @@
 kustomize:
   images:
-  - thejoud1997/auth:71082ebad65e245eb8334977e1ac4a9a474a8717
+  - thejoud1997/auth:latest
