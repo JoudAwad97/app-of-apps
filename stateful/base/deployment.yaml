@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: nginx-ebs
+        version: safe
     spec:
       containers:
         - name: nginx

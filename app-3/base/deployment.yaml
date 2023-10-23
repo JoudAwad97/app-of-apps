@@ -18,6 +18,7 @@ spec:
         app: app-3
         db: rds
         auth: custom
+        version: safe
     spec:
       serviceAccountName: app-3
       containers:
