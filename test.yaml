@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: mysql-rds
+  namespace: retail-store
+spec:
+  hosts:
+    - database-1.cpgwvhcnpddn.us-east-2.rds.amazonaws.com
+
+  ports:
+    - number: 3306
+      name: mysql
+      protocol: TCP
+  location: MESH_EXTERNAL
+  resolution: DNS
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: mysql-rds-destinationrule
+spec:
+  host: database-1.cpgwvhcnpddn.us-east-2.rds.amazonaws.com
+  trafficPolicy:
+    tls:
+      mode: SIMPLE
