@@ -12,10 +12,10 @@ spec:
       app: app-3
   template:
     metadata:
-      # annotations:
-      #sidecar.istio.io/rewriteAppHTTPProbers: "false"
-      # This tells the side-car proxy to allow any traffic on the specified port to access the service directly.
-      # traffic.sidecar.istio.io/excludeOutboundPorts: "3306"
+      annotations:
+        #sidecar.istio.io/rewriteAppHTTPProbers: "false"
+        # This tells the side-car proxy to allow any traffic on the specified port to access the service directly.
+        traffic.sidecar.istio.io/excludeOutboundPorts: "3306"
       labels:
         app: app-3
         db: rds

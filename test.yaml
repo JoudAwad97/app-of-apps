@@ -5,9 +5,9 @@ metadata:
   namespace: retail-store
 spec:
   hosts:
-    - database-1.cpgwvhcnpddn.us-east-2.rds.amazonaws.com
+    - "*.rds.amazonaws.com"
   ports:
     - number: 3306
       name: tcp
       protocol: TCP
-  resolution: STATIC
+  location: MESH_EXTERNAL
