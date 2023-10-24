@@ -9,17 +9,7 @@ spec:
 
   ports:
     - number: 3306
-      name: mysql
+      name: sql
       protocol: TCP
   location: MESH_EXTERNAL
   resolution: DNS
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: mysql-rds-destinationrule
-spec:
-  host: database-1.cpgwvhcnpddn.us-east-2.rds.amazonaws.com
-  trafficPolicy:
-    tls:
-      mode: SIMPLE
