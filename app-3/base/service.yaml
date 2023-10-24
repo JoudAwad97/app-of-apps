@@ -7,7 +7,7 @@ spec:
   selector:
     app: app-3
   ports:
-    - name: http
+    - name: tls
       port: 80
       targetPort: 3000
   type: ClusterIP
