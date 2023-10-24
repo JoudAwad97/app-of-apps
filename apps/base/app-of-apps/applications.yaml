@@ -44,6 +44,11 @@ metadata:
     argocd-image-updater.argoproj.io/image-list: app-1=thejoud1997/app-1
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/app-1.update-strategy: latest
+    # enable alerts for this app to send it to the "alerts" as the channel name
+    # this is configured after we setup the ArgoCD App on slack (create it manually and create secret and CM)
+    notifications.argoproj.io/subscribe.on-deployed.slack: alerts
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: alerts
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: alerts
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -78,6 +83,9 @@ metadata:
     argocd-image-updater.argoproj.io/image-list: app-2=thejoud1997/app-2
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/app-2.update-strategy: latest
+    notifications.argoproj.io/subscribe.on-deployed.slack: alerts
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: alerts
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: alerts
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -142,6 +150,9 @@ metadata:
     argocd-image-updater.argoproj.io/image-list: app-3=thejoud1997/app-3
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/app-3.update-strategy: latest
+    notifications.argoproj.io/subscribe.on-deployed.slack: alerts
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: alerts
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: alerts
 spec:
   # the same name of the project where you are extending this services
   project: default
@@ -206,6 +217,9 @@ metadata:
     argocd-image-updater.argoproj.io/image-list: auth=thejoud1997/auth
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/auth.update-strategy: latest
+    notifications.argoproj.io/subscribe.on-deployed.slack: alerts
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: alerts
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: alerts
 spec:
   # the same name of the project where you are extending this services
   project: default
