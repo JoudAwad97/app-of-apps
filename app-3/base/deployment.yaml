@@ -14,6 +14,7 @@ spec:
     metadata:
       annotations:
         #sidecar.istio.io/rewriteAppHTTPProbers: "false"
+        proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
         # This tells the side-car proxy to allow any traffic on the specified port to access the service directly.
         #traffic.sidecar.istio.io/excludeOutboundPorts: "3306"
       labels:
