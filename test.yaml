@@ -12,13 +12,3 @@ spec:
       protocol: TCP
   location: MESH_EXTERNAL
   resolution: DNS
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: "mysql-rds"
-spec:
-  host: database-1.cpgwvhcnpddn.us-east-2.rds.amazonaws.com
-  trafficPolicy:
-    tls:
-      mode: DISABLE

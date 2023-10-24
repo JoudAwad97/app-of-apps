@@ -15,6 +15,7 @@ spec:
       annotations:
         #sidecar.istio.io/rewriteAppHTTPProbers: "false"
         #traffic.sidecar.istio.io/excludeOutboundPorts: "3306"
+        sidecar.istio.io/https-protocol-port: 443,3306
       labels:
         app: app-3
         db: rds
