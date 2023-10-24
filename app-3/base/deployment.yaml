@@ -14,7 +14,7 @@ spec:
     metadata:
       annotations:
         #sidecar.istio.io/rewriteAppHTTPProbers: "false"
-        traffic.sidecar.istio.io/excludeOutboundPorts: "3306"
+        traffic.sidecar.istio.io/excludeOutboundPorts: "3306,3307"
       labels:
         app: app-3
         db: rds
