@@ -10,5 +10,4 @@ spec:
     - number: 3306
       name: tcp
       protocol: TCP
-  location: MESH_EXTERNAL
-  resolution: DNS
+  resolution: STATIC
