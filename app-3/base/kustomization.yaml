@@ -3,6 +3,9 @@ namespace: retail-store
 configurations:
   - https://argoproj.github.io/argo-rollouts/features/kustomize/rollout-transform.yaml
 resources:
+- https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+- https://github.com/argoproj/argo-rollouts/releases/latest/download/notifications-install.yaml
+resources:
   - deployment.yaml
   - ingress.yaml
   - secret-provider.yaml
