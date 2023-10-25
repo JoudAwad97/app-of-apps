@@ -8,6 +8,7 @@ metadata:
     notifications.argoproj.io/subscribe.on-rollout-updated.slack: alerts
     notifications.argoproj.io/subscribe.on-scaling-replica-set.slack: alerts
     notifications.argoproj.io/subscribe.on-rollout-completed.slack: alerts
+    notifications.argoproj.io/subscribe.on-rollout-aborted.slack: alerts
   labels:
     app: app-1
 spec:
