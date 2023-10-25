@@ -1,10 +1,5 @@
 # adding this here will make it generally access to all the other files in the base (instead of individually define it)
 namespace: retail-store
-configurations:
-  - https://argoproj.github.io/argo-rollouts/features/kustomize/rollout-transform.yaml
-resources:
-- https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
-- https://github.com/argoproj/argo-rollouts/releases/latest/download/notifications-install.yaml
 resources:
   - deployment.yaml
   - ingress.yaml
@@ -13,4 +8,3 @@ resources:
   - service-account.yaml
   - service.yaml
   - sealed-secret.yaml
- 

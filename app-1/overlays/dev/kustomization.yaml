@@ -2,3 +2,8 @@ resources:
   - ../../base
 patches:
   - path: deployment-patch.yaml
+configurations:
+  - https://argoproj.github.io/argo-rollouts/features/kustomize/rollout-transform.yaml
+resources:
+  - https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+  - https://github.com/argoproj/argo-rollouts/releases/latest/download/notifications-install.yaml
