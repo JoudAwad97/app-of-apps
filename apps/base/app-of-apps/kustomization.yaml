@@ -7,5 +7,4 @@ resources:
   # only allow to change the applications.yaml file from the base app-of-apps module
   - applications.yaml
   - namespace.yaml
-  - https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
   - https://github.com/argoproj/argo-rollouts/releases/latest/download/notifications-install.yaml
