@@ -1,0 +1,15 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: "test-operator"
+  namespace: istio-system
+spec:
+  meshConfig:
+    outboundTrafficPolicy:
+      mode: REGISTRY_ONLY
+  # Traffic management feature
+  components:
+    # Istio Gateway feature
+    egressGateways:
+      - name: istio-egressgateway
+        enabled: true
