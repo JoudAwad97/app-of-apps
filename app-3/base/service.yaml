@@ -1,13 +1,27 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-3
+  name: app-3-active
   namespace: retail-store
 spec:
   selector:
     app: app-3
   ports:
     - name: tcp-http
-      port: 80
+      port: 8080
+      targetPort: 3000
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-3-preview
+  namespace: retail-store
+spec:
+  selector:
+    app: app-3
+  ports:
+    - name: tcp-http
+      port: 8080
       targetPort: 3000
   type: ClusterIP

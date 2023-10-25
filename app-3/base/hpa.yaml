@@ -1,0 +1,20 @@
+# this is a sample of example of how implementing the HPA works with Argo Rollout
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: app-3-hpa
+spec:
+  # it is very important to use the scaleTargetRef to point to the "Rollout" object of Argo Rollout
+  scaleTargetRef:
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    name: app-3
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
