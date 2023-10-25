@@ -6,7 +6,9 @@ metadata:
   # Define notifications for the rollout
   annotations:
     notifications.argoproj.io/subscribe.on-rollout-step-completed.slack: alerts
+    notifications.argoproj.io/subscribe.on-rollout-updated.slack: alerts
     notifications.argoproj.io/subscribe.on-scaling-replica-set.slack: alerts
+    notifications.argoproj.io/subscribe.on-rollout-completed.slack: alerts
   labels:
     app: app-3
 spec:
