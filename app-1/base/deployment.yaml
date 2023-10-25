@@ -3,6 +3,11 @@ kind: Rollout
 metadata:
   name: app-1
   namespace: retail-store
+  annotations:
+    notifications.argoproj.io/subscribe.on-rollout-step-completed.slack: alerts
+    notifications.argoproj.io/subscribe.on-rollout-updated.slack: alerts
+    notifications.argoproj.io/subscribe.on-scaling-replica-set.slack: alerts
+    notifications.argoproj.io/subscribe.on-rollout-completed.slack: alerts
   labels:
     app: app-1
 spec:
