@@ -1,13 +1,13 @@
 # ISTIO proxy does not work with the security group from aws, so we have to disable the security group with the pod in order to make it work
-# apiVersion: vpcresources.k8s.aws/v1beta1
-# kind: SecurityGroupPolicy
-# metadata:
-#   name: rds-security-group-policy
-#   namespace: retail-store
-# spec:
-#   podSelector:
-#     matchLabels:
-#       app: app-3
-#   securityGroups:
-#     groupIds:
-#       - sg-0ff1dcb560bdb101a
+apiVersion: vpcresources.k8s.aws/v1beta1
+kind: SecurityGroupPolicy
+metadata:
+  name: rds-security-group-policy
+  namespace: retail-store
+spec:
+  podSelector:
+    matchLabels:
+      app: app-3
+  securityGroups:
+    groupIds:
+      - sg-0ff1dcb560bdb101a
