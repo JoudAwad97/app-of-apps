@@ -4,7 +4,7 @@ kind: ServiceAccount
 metadata:
   name: operate-workflow-sa
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::443338647997:role/DEV-INVOKE-LAMBDA"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::443338647997:role/lamba-invoke"
 ---
 # Bind the service account with the following permissions
 # Similarly you can use a ClusterRole and ClusterRoleBinding
@@ -118,4 +118,4 @@ spec:
 
           # Optional, use if your IAM user/role should assume another role to
           # perform this action
-          roleARN: arn:aws:iam::443338647997:role/service-role/test
+          roleARN: arn:aws:iam::443338647997:role/lamba-invoke
