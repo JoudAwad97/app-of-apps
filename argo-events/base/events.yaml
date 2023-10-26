@@ -1,8 +1,12 @@
+# create a serviceAccount for the "Sensor" to give it the required permissions to invoke and perform it is required job
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: operate-workflow-sa
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::443338647997:role/invoke-lambda"
 ---
+# Bind the service account with the following permissions
 # Similarly you can use a ClusterRole and ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -59,6 +63,7 @@ kind: Sensor
 metadata:
   name: webhook
 spec:
+  # this is very critical to the Sensor to be able to perform it is required job like invoking a lambda, Pods, Deployments, etc...
   template:
     serviceAccountName: operate-workflow-sa
   dependencies:
@@ -68,6 +73,9 @@ spec:
       # name of the webhook object in the "EventSource"
       eventName: example
   triggers:
+    ######################################################
+    ###              Invoke A Pod/Deployment           ###
+    ######################################################
     - template:
         name: webhook-pod-trigger
         k8s:
@@ -90,3 +98,24 @@ spec:
             - src:
                 dependencyName: test-dep
               dest: spec.containers.0.args.0
+    - template:
+        ######################################################
+        ###              Invoke A Lambda                   ###
+        ######################################################
+        name: lambda-trigger
+        awsLambda:
+          functionName: test
+          region: us-east-2
+          payload:
+            - src:
+                dependencyName: test-dep
+                dataKey: body.name
+              dest: name
+
+          # Optional, possible values: RequestResponse, Event and DryRun
+          # Defaults to RequestResponse, which means invoke the function synchronously.
+          invocationType: Event
+
+          # Optional, use if your IAM user/role should assume another role to
+          # perform this action
+          # roleARN: arn:aws:iam::123456789012:role/some-role
