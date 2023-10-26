@@ -4,3 +4,5 @@ resources:
   - deployment.yaml
   - network-policy.yaml
   - service.yaml
+configurations:
+  - https://argoproj.github.io/argo-rollouts/features/kustomize/rollout-transform.yaml
