@@ -116,4 +116,4 @@ spec:
 
           # Optional, use if your IAM user/role should assume another role to
           # perform this action
-          # roleARN: arn:aws:iam::443338647997:role/argo
+          roleARN: arn:aws:iam::443338647997:role/DEV-LAMBDA-INVOKER-ROLE
