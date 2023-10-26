@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: app-2
   namespace: retail-store
@@ -21,3 +21,40 @@ spec:
           image: thejoud1997/app-2:latest
           ports:
             - containerPort: 3000
+  analysis:
+    successfulRunHistoryLimit: 3
+    unsuccessfulRunHistoryLimit: 3
+  rollbackWindow:
+    revisions: 3
+  strategy:
+    # when working with blue/green deployment we need to have two services, one active and one as preview this will allow ArgoRollout to perform a blue/green deployment
+    blueGreen:
+      activeService: app-2-active # <- matches Active Service metadata
+      previewService: app-2-preview # <- matches Preview Service metadata
+
+      # prePromotionAnalysis:
+      #   templates:
+      #     - templateName: pre-promotion-analysis
+      #   args:
+      #     - name: rollout-app-3-preview
+
+      # postPromotionAnalysis:
+      #   templates:
+      #     - templateName: post-promotion-analysis
+
+      # number of replicas to keep for preview
+      previewReplicaCount: 2
+
+      # autoPromotionEnabled disables automated promotion of the new stack by pausing the rollout
+      # immediately before the promotion. If omitted, the default behavior is to promote the new
+      # stack as soon as the ReplicaSet are completely ready/available.
+      # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
+      autoPromotionEnabled: true
+      #  The AutoPromotionSeconds will make the rollout automatically promote the new ReplicaSet to active Service after the AutoPromotionSeconds time
+      # has passed since the rollout has entered a paused state.
+      # If the AutoPromotionEnabled field is set to false, this field will be ignored
+      autoPromotionSeconds: 1
+      scaleDownDelaySeconds: 30
+
+      # 0 means not to scale down
+      abortScaleDownDelaySeconds: 30

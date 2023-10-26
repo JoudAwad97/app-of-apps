@@ -5,7 +5,21 @@ metadata:
   namespace: retail-store
 spec:
   selector:
-    app: app-2
+    app: app-2-active
+  ports:
+    - name: https
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-2
+  namespace: retail-store
+spec:
+  selector:
+    app: app-2-preview
   ports:
     - name: https
       port: 80
