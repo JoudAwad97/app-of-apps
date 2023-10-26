@@ -104,11 +104,29 @@ spec:
         awsLambda:
           functionName: test
           region: us-east-2
+          # It's used to extract information from the incoming event and map it to the trigger payload.
+          # When an event is received by the sensor, the event payload (which is essentially the data associated with the event)
+          # can be parsed and customized before sending it to the trigger. This is done using the payload field.
+          # For example, here the payload section is extracting the body.message value from the incoming event (which has a dependency name test-dep)
+          # and maps it to a field named message. This customized payload will be passed to the lambda function.
           payload:
             - src:
+                # dependencyName = the source of the data, in this case it comes from the "dependencies" section
                 dependencyName: test-dep
                 dataKey: body.name
+              # Defines the destination or the name of the parameter/payload in the trigger.
+              # This tells the sensor how the extracted data should be labeled or where it should be placed when invoking the trigger.
               dest: name
+
+          # Parameters allow you to modify the attributes of the trigger itself dynamically based on the incoming event.
+          # For example, in the provided lambda function, the parameters section is extracting the body.function_name value from the incoming event (with the same dependency name test-dep)
+          # and maps it to functionName. This means, based on the incoming event, the AWS Lambda function name can be dynamically set.
+          # If an event comes in with body.function_name set to "my-function", then the lambda named "my-function" will be invoked.
+          # parameters:
+          #   - src:
+          #       dependencyName: test-dep
+          #       dataKey: body.function_name
+          #     dest: functionName
 
           # Optional, possible values: RequestResponse, Event and DryRun
           # Defaults to RequestResponse, which means invoke the function synchronously.
