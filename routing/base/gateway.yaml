@@ -27,6 +27,7 @@ metadata:
   name: gw-ingress
   namespace: istio-system
 spec:
+  ingressClassName: alb
   rules:
     - http:
         paths:
