@@ -18,7 +18,7 @@ spec:
         - "*"
 ---
 ## Deploy Application load balancer and point it to the ingress gateway of the istio
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: istio-ingress
