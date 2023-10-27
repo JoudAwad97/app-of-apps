@@ -36,9 +36,12 @@ spec:
       http:
         paths:
           - path: /*
+            pathType: Prefix
             backend:
-              serviceName: istio-ingressgateway
-              servicePort: 80
+              service:
+                name: istio-ingressgateway
+                port:
+                  number: 80
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
