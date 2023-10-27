@@ -17,6 +17,29 @@ spec:
       hosts:
         - "*"
 ---
+## Deploy Application load balancer and point it to the ingress gateway of the istio
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: istio-ingress
+  namespace: istio-system
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internal
+    # alb.ingress.kubernetes.io/subnets: subnet-12345678, subnet-09876543
+    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:123456789012:certificate/b1f931cb-de10-43af-bfa6-a9a12e12b4c7 #--ARN of ACM Certificate
+    # alb.ingress.kubernetes.io/backend-protocol: HTTPS
+spec:
+  rules:
+    - host: "*"
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: istio-ingressgateway
+              servicePort: 80
+---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -26,7 +49,7 @@ spec:
   hosts:
     - "*"
   gateways:
-    - http-gateway
+    - http-gateway.istio-system.svc.cluster.local
   http:
     - match:
         - uri:
