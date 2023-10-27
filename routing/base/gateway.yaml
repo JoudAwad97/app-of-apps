@@ -21,26 +21,22 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: istio-ingress
-  namespace: istio-system
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internal
-    # alb.ingress.kubernetes.io/subnets: subnet-12345678, subnet-09876543
-    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
-    # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:123456789012:certificate/b1f931cb-de10-43af-bfa6-a9a12e12b4c7 #--ARN of ACM Certificate
-    # alb.ingress.kubernetes.io/backend-protocol: HTTPS
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  name: gw-ingress
+  namespace: istio-system
 spec:
   rules:
     - http:
         paths:
-          - path: /*
-            pathType: Prefix
-            backend:
+          - backend:
               service:
                 name: istio-ingressgateway
                 port:
                   number: 80
+            path: /
+            pathType: Prefix
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
