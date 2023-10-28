@@ -12,7 +12,7 @@ spec:
   servers:
     - port:
         number: 80
-        name: http2
+        name: https
         protocol: HTTP
       hosts:
         - "*"
@@ -32,13 +32,13 @@ spec:
   rules:
     - http:
         paths:
-          - backend:
+          - path: /
+            pathType: Prefix
+            backend:
               service:
                 name: istio-ingressgateway
                 port:
                   number: 80
-            path: /
-            pathType: Prefix
 
 ---
 apiVersion: networking.istio.io/v1alpha3
@@ -50,7 +50,7 @@ spec:
   hosts:
     - "*"
   gateways:
-    - http-gateway.istio-system.svc.cluster.local
+    - http-gateway
   http:
     - match:
         - uri:
