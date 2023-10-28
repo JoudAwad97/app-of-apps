@@ -1,4 +1,3 @@
 # adding this here will make it generally access to all the other files in the base (instead of individually define it)
-namespace: retail-store
 resources:
   - gateway.yaml
