@@ -32,6 +32,13 @@ spec:
   rules:
     - http:
         paths:
+          - path: /test
+            pathType: Prefix
+            backend:
+              service:
+                name: app-1-active
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
