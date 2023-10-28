@@ -30,7 +30,7 @@ metadata:
     alb.ingress.kubernetes.io/backend-protocol: HTTPS
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     # alb.ingress.kubernetes.io/target-type: ip
-    # alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/target-type: instance
   name: gw-ingress
   namespace: istio-system
   labels:
