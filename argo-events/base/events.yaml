@@ -41,6 +41,10 @@ kind: EventSource
 metadata:
   name: webhook
 spec:
+  # If we want to expose this webhook to an endpoint using ALB
+  # we have to disable the service part of it (this part is only for testing purposes)
+  # also we will need to generate a service and point it to the "event-source", and then use either "ingress/istio virtual service"
+  # to expose this endpoint to public internet
   # service:
   #   ports:
   #     - port: 12000
@@ -55,6 +59,19 @@ spec:
       endpoint: /example
       # HTTP request method to allow. In this case, only POST requests are accepted
       method: GET
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webhook-eventsource
+spec:
+  ports:
+    - port: 12000
+      protocol: TCP
+      targetPort: 12000
+  selector:
+    eventsource-name: webhook
+  type: NodePort
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
