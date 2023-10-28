@@ -58,7 +58,7 @@ spec:
       # endpoint to listen to
       endpoint: /example
       # HTTP request method to allow. In this case, only POST requests are accepted
-      method: GET
+      method: POST
 ---
 apiVersion: v1
 kind: Service
