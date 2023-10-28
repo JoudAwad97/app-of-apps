@@ -44,7 +44,7 @@ spec:
                 name: app-1-active
                 port:
                   number: 80
-          - path: /
+          - path: /ingress
             pathType: Prefix
             backend:
               service:
