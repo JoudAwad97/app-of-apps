@@ -40,6 +40,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: EventSource
 metadata:
   name: webhook
+  labels:
+    eventsource-name: webhook
 spec:
   # If we want to expose this webhook to an endpoint using ALB
   # we have to disable the service part of it (this part is only for testing purposes)
