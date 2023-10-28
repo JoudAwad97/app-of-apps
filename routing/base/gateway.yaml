@@ -12,7 +12,7 @@ spec:
   servers:
     - port:
         number: 80
-        name: http
+        name: http2
         protocol: HTTP
       hosts:
         - "*"
@@ -23,7 +23,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/scheme: internet-facing
   name: gw-ingress
   namespace: istio-system
 spec:
