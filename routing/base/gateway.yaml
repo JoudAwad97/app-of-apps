@@ -78,6 +78,14 @@ spec:
   http:
     - match:
         - uri:
+            prefix: /webhook
+      route:
+        - destination:
+            host: webhook-eventsource-svc.argo-events.cluster.local
+            port:
+              number: 12000
+    - match:
+        - uri:
             prefix: /db
       route:
         - destination:
