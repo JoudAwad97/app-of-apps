@@ -27,8 +27,8 @@ metadata:
     alb.ingress.kubernetes.io/load-balancer-name: alb-external-ingress
     alb.ingress.kubernetes.io/healthcheck-path: /healthz/ready
     alb.ingress.kubernetes.io/healthcheck-port: traffic-port
-    alb.ingress.kubernetes.io/backend-protocol: HTTPS
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/target-type: ip
     # alb.ingress.kubernetes.io/target-type: instance
   name: gw-ingress
@@ -50,7 +50,7 @@ spec:
               service:
                 name: istio-ingressgateway
                 port:
-                  number: 443
+                  number: 80
             path: /
             pathType: Prefix
 ---
