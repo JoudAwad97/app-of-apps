@@ -35,7 +35,7 @@ spec:
               service:
                 name: istio-ingressgateway
                 port:
-                  number: 15021
+                  number: 80
             path: /
             pathType: Prefix
 ---
