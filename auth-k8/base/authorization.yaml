@@ -61,7 +61,7 @@ spec:
             requestPrincipals: ["*"]
     - to:
         - operation:
-            paths: ["/", "/auth/*"]
+            paths: ["/", "/auth/*", "/webhook"]
 # ---
 # Enforce that all incoming requests to your service have a token with a claim (field) in it with a value "thejoud001@gmail.com"
 # apiVersion: security.istio.io/v1beta1
