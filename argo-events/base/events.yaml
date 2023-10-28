@@ -68,6 +68,7 @@ spec:
   ports:
     - port: 12000
       protocol: TCP
+      name: tcp
       targetPort: 12000
   selector:
     eventsource-name: webhook
