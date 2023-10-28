@@ -26,7 +26,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/load-balancer-name: alb-external-ingress
     # alb.ingress.kubernetes.io/subnets: subnet-0c11109d0b67a60b7, subnet-0d42b2dbf61968c87, subnet-058587473f3c14f4e
-    # alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/target-type: instance
     # alb.ingress.kubernetes.io/target-type: ip
   name: gw-ingress
   namespace: istio-system
