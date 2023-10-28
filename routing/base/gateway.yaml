@@ -24,8 +24,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    #alb.ingress.kubernetes.io/target-type: instance
+    #alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/target-type: instance
   name: gw-ingress
   namespace: istio-system
 spec:
