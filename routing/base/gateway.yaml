@@ -12,7 +12,7 @@ spec:
   servers:
     - port:
         number: 80
-        name: https
+        name: http
         protocol: HTTP
       hosts:
         - "*"
@@ -43,13 +43,13 @@ spec:
                 name: app-1-active
                 port:
                   number: 80
-          - path: /my-path
-            pathType: Prefix
-            backend:
+          - backend:
               service:
                 name: istio-ingressgateway
                 port:
-                  number: 80
+                  number: 443
+            path: /
+            pathType: Prefix
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
