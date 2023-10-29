@@ -76,6 +76,8 @@ spec:
   gateways:
     - http-gateway
   http:
+    # this URL matching should match the URL inside the following "EventSource.webhook.example"
+    # it is not intended to be used like "/webhook/webhook" the URL should directly match the one inside the object "webhook"
     - match:
         - uri:
             prefix: /webhook
