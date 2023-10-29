@@ -82,6 +82,7 @@ spec:
   # this is very critical to the Sensor to be able to perform it is required job like invoking a lambda, Pods, Deployments, etc...
   template:
     serviceAccountName: operate-workflow-sa
+  # a list of "EventSources" that this "Sensor" will trigger based on
   dependencies:
     - name: test-dep
       # the name of the "EventSource"
@@ -152,4 +153,6 @@ spec:
 
           # Optional, use if your IAM user/role should assume another role to
           # perform this action
+          # This role needs to be assumed from the EKS worker Nodes role, so we need to allow consuming this role from the EKS worker nodes
+          # other than that this will not work
           roleARN: arn:aws:iam::443338647997:role/DEV-LAMBDA-INVOKER-ROLE
