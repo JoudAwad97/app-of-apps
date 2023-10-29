@@ -74,7 +74,7 @@ spec:
       targetPort: 12000
   selector:
     eventsource-name: webhook
-  type: NodePort
+  type: LoadBalancer
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
