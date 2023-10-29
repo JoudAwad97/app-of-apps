@@ -70,6 +70,7 @@ spec:
       protocol: TCP
       name: tcp
       targetPort: 12000
+      nodePort: 31000
   selector:
     eventsource-name: webhook
   type: LoadBalancer
