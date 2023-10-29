@@ -72,7 +72,7 @@ spec:
       targetPort: 12000
   selector:
     eventsource-name: webhook
-  type: NodePort
+  type: ClusterIP
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
