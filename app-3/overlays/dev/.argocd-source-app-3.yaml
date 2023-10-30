@@ -1,3 +1,3 @@
 kustomize:
   images:
-  - thejoud1997/app-3:60d0e9ee4262ed81ffc0b52081cba52c173b1450
+  - thejoud1997/app-3:307b343566d52add1523e3d0ef1ad87975631987
