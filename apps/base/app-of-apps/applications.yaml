@@ -137,43 +137,43 @@ spec:
       - CreateNamespace=false
       - PrunePropagationPolicy=foreground
       - PruneLast=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: app-3
-  # namespace should be the same one where you have ArgoCD installed
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: app-3=thejoud1997/app-3
-    argocd-image-updater.argoproj.io/write-back-method: git
-    argocd-image-updater.argoproj.io/app-3.update-strategy: latest
-    notifications.argoproj.io/subscribe.on-deployed.slack: alerts
-    notifications.argoproj.io/subscribe.on-sync-failed.slack: alerts
-    # notifications.argoproj.io/subscribe.on-sync-succeeded.slack: alerts
-spec:
-  # the same name of the project where you are extending this services
-  project: default
-  source:
-    repoURL: ssh://git@github.com/JoudAwad97/app-of-apps.git
-    # path of the service in the files
-    path: app-3/overlays/dev
-    targetRevision: main
-  destination:
-    server: https://kubernetes.default.svc
-  # service syncing options
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: false
-    syncOptions:
-      - Validate=true
-      - CreateNamespace=false
-      - PrunePropagationPolicy=foreground
-      - PruneLast=true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: app-3
+#   # namespace should be the same one where you have ArgoCD installed
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+#   annotations:
+#     argocd-image-updater.argoproj.io/image-list: app-3=thejoud1997/app-3
+#     argocd-image-updater.argoproj.io/write-back-method: git
+#     argocd-image-updater.argoproj.io/app-3.update-strategy: latest
+#     notifications.argoproj.io/subscribe.on-deployed.slack: alerts
+#     notifications.argoproj.io/subscribe.on-sync-failed.slack: alerts
+#     # notifications.argoproj.io/subscribe.on-sync-succeeded.slack: alerts
+# spec:
+#   # the same name of the project where you are extending this services
+#   project: default
+#   source:
+#     repoURL: ssh://git@github.com/JoudAwad97/app-of-apps.git
+#     # path of the service in the files
+#     path: app-3/overlays/dev
+#     targetRevision: main
+#   destination:
+#     server: https://kubernetes.default.svc
+#   # service syncing options
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#       allowEmpty: false
+#     syncOptions:
+#       - Validate=true
+#       - CreateNamespace=false
+#       - PrunePropagationPolicy=foreground
+#       - PruneLast=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
